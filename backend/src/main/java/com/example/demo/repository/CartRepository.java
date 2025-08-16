@@ -6,4 +6,3 @@ import com.example.demo.entity.Cart;
 
 public interface CartRepository extends JpaRepository<Cart, Long> {
 }
-

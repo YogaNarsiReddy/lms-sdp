@@ -2,6 +2,8 @@ package com.example.demo.service;
 
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +17,11 @@ import com.example.demo.repository.ProgressRepository;
 
 
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class AssessmentService {
 
-    @Autowired
-    private AssessmentRepository assessmentRepository;
+    private final AssessmentRepository assessmentRepository;
     
     public List<Assessment> getAssessmentsByUserAndCourse(User user, Course course) {
         return assessmentRepository.findByUserAndCourse(user, course);
@@ -27,9 +30,11 @@ public class AssessmentService {
     public ResponseEntity<List<Assessment>> getAssessmentByUser(User user){
     	return ResponseEntity.status(HttpStatus.CREATED).body(assessmentRepository.findByUser(user));
     }
+
     public Assessment createAssessment(Assessment assessment) {
         return assessmentRepository.save(assessment);
     }
+
     public void addMarks(Assessment assessment, int marks) {
         assessment.setMarks(marks);
     }
