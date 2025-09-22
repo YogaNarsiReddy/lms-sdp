@@ -5,7 +5,7 @@ import Navbar from './Navbar';
 function Users() {
   const [users , setUsers] = useState([]);
   useEffect(()=>{
-    fetch("http://localhost:8080/api/users").then((data)=>data.json()).then((res)=>setUsers(res));
+    fetch("http://localhost:8087/api/users").then((data)=>data.json()).then((res)=>setUsers(res));
   },[])
   console.log(users);
   return (
